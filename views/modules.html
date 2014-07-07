@@ -1,0 +1,65 @@
+<div class="bs-docs-header" id="content">
+	<div class="container">
+		<h1>Modules</h1>
+		<p>Written in plain old JavaScript, building blocks for AngularJS applications, modular design pattern, and more.</p>
+	</div>
+</div>
+
+<div class="container bs-docs-container">
+	<div class="row">
+		<div class="col-md-9" role="main">
+			<div class="bs-docs-section">
+
+				<h1 id="overview" class="page-header">Overview</h1>
+
+				<p class="lead">Get the lowdown on the key pieces of Jeffy's infrastructure, including it's approach to better, faster, stronger web development.</p>
+
+				<h3 id="creating-modules">Creating modules</h3>
+				<p>Modules can be a set of services, or an entire application. Just provide a module name followed by an array of dependencies to the angular.module function. Sometimes both are required.</p>
+				<div class="zero-clipboard">
+					<span class="btn-clipboard">Copy</span>
+				</div>
+				<div class="highlight">
+
+<pre><code class="js">angular.module('hydra',['hydra.services','hydra.directives']);
+angular.module('hydra.services',[]);
+angular.module('hydra.directives',[]);</code></pre>
+
+				</div>
+
+				<h3 id="creating-services">Creating services</h3>
+				<p>Services are just syntax sugar for angular providers. But provider syntax is usually overkill. This service will provide data from some api.</p>
+				<div class="zero-clipboard">
+					<span class="btn-clipboard">Copy</span>
+				</div>
+				<div class="highlight">
+
+<pre><code class="js">hydra.service('TripsService',['$http',function($http){
+	var TripsService = {};
+	TripsService.getTrips = function (callback) {
+		$http.get('/trips').success(function(trips){
+			callback(trips);
+		});
+	}
+	return TripsService;
+}]);</code></pre>
+
+				</div>
+				<p>When the TripsService is called with getTrips, it will callback a function and pass through trips.</p>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" role="complementary">
+				<ul class="nav bs-docs-sidenav">
+					<li><a href="#overview">Overview</a>
+						<ul class="nav">
+							<li class=""><a href="#creating-modules">Creating modules</a></li>
+							<li class=""><a href="#creating-services">Creating services</a></li>
+						</ul>
+					</li>
+				</ul>
+				<a class="back-to-top" href="#top">Back to top</a>
+			</div>
+		</div>
+	</div>
+</div>
